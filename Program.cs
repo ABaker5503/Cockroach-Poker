@@ -13,7 +13,11 @@ namespace Cockroach_Poker
         static void Main(string[] args)
         {
             int exitflag=0;
+            int playerflag = 0;             //starts at 0 so mod+1 is first player
             string userInput;
+            string playagainst;
+            int cardagainst;
+            string fib;
             int NumberofPlayers;
             string Name;
             Player Player1;
@@ -23,15 +27,15 @@ namespace Cockroach_Poker
             List<Player> PlayerList=new List<Player>();
 
             #region Print Rules
-
+            //still need to do this
             #endregion
 
             Console.WriteLine("How many players? (2 or 4)");
             userInput=Console.ReadLine();
             NumberofPlayers = int.Parse(userInput);
 
-            //setting up array for card distribution
             #region Card Distribution Array
+            //setting up array for card distribution
             int[] arr = new int[64];
             for (int i = 0; i < 8; i++)
             {
@@ -70,10 +74,6 @@ namespace Cockroach_Poker
                         arr[j] = arr[j + 1];
                     end--;
                 }
-                Player1.PrintPlayer();
-                Console.WriteLine();
-                Player2.PrintPlayer();
-                Console.ReadLine();
 
                 PlayerList.Add(Player1);
                 PlayerList.Add(Player2);
@@ -129,14 +129,6 @@ namespace Cockroach_Poker
                     end--;
                 }
 
-                Player1.PrintPlayer();
-                Console.WriteLine();
-                Player2.PrintPlayer();
-                Console.WriteLine();
-                Player3.PrintPlayer();
-                Console.WriteLine();
-                Player4.PrintPlayer();
-                Console.ReadLine();
                 PlayerList.Add(Player1);
                 PlayerList.Add(Player2);
                 PlayerList.Add(Player3);
@@ -147,21 +139,55 @@ namespace Cockroach_Poker
             #region Game Loop
             while (exitflag!=1)
             {
+                //use player flag to indicate whose turn it is?
                 //Prints cards in Opponent(s') hand
-                foreach (Player p in PlayerList)
+                int x = playerflag % NumberofPlayers + 1;
+                Console.WriteLine(x);
+                switch (x)
                 {
-                    Console.WriteLine(p.Name);
+                    case 1:
+                        PlayerList[1].PrintCards();
+                        if (NumberofPlayers == 4)
+                        {
+                            PlayerList[2].PrintCards();
+                            PlayerList[3].PrintCards();
+                        }
+                        break;
+                    case 2:
+                        PlayerList[0].PrintCards();
+                        if (NumberofPlayers == 4)
+                        {
+                            PlayerList[2].PrintCards();
+                            PlayerList[3].PrintCards();
+                        }
+                        break;
+                    case 3:
+                        PlayerList[0].PrintCards();
+                        PlayerList[1].PrintCards();
+                        PlayerList[3].PrintCards();
+                        break;
+                    case 4:
+                        PlayerList[0].PrintCards();
+                        PlayerList[1].PrintCards();
+                        PlayerList[3].PrintCards();
+                        break;
                 }
 
-                //Print cards in front of you
-
-                //Print cards in your hand
+                //Print your cards
+                PlayerList[playerflag].PrintPlayer();
 
                 //Pick person to play against
+                Console.WriteLine("Player you want to play against: ");
+                playagainst = Console.ReadLine();
 
                 //Pick card to play
+                Console.WriteLine("1-Cockroach  2-Bat  3-SinkBug  4-Rat  5-Forg  6-Fly  7-Spider  8-Scorpion");
+                Console.WriteLine("Card you want to play (pick number): ");
+                cardagainst = int.Parse(Console.ReadLine());
 
                 //Pick truth or lie (if lie choose different name)
+                Console.WriteLine("Truth (T) or Lie (F): ");
+                fib = Console.ReadLine();
 
                 //Player against chooses truth, lie, or pass (T,L,P)
 
@@ -170,6 +196,8 @@ namespace Cockroach_Poker
                 //chech if player against has 4 of any cards, set exitflag=1;
 
                 //if player enters "x", set exitflag=1
+
+                exitflag = 1;
             }
             Console.ReadLine();
             #endregion

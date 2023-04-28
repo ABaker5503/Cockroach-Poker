@@ -10,17 +10,18 @@ namespace Cockroach_Poker
 {
     public class Player
     {
-        string Name { get; set; }
-        int CardsRemaining;
-        int CardsReceived;
-        int Forgs;
-        int Rats;
-        int Flys;
-        int SinkBugs;
-        int Bats;
-        int Cockroaches;
-        int Spiders;
-        int Scorpions;
+        public string Name { get; set; }
+        public int Forgs { get; set; }
+        public int Rats { get; set; }
+        public int Flys { get; set; }
+        public int SinkBugs { get; set; }
+        public int Bats { get; set; }
+        public int Cockroaches { get; set; }
+        public int Spiders { get; set; }
+        public int Scorpions { get; set; }
+
+        int CardsRemaining;                         //number of cards still in your hand
+        int CardsReceived;                          //number of cards in front of you
 
         public Player(string Name, int totalPlayers)
         {
@@ -99,9 +100,17 @@ namespace Cockroach_Poker
 
         public void PrintPlayer()
         {
-            Console.WriteLine(String.Format("Cards In Front of You: Forg {0}  Rat {1}  Fly {2}  Sink Bug {3}  Bat {4}  Cockroach {5}  Spider {6}  Scorpion {7}", ForgCard.CardsPlayed, RatCard.CardsPlayed, FlyCard.CardsPlayed, SinkBugCard.CardsPlayed, BatCard.CardsPlayed, CockroachCard.CardsPlayed, SpiderCard.CardsPlayed, ScorpionCard.CardsPlayed));
+            Console.WriteLine(String.Format("{0}:", Name));
+            Console.WriteLine(String.Format("Cards In Front: Forg {0}  Rat {1}  Fly {2}  Sink Bug {3}  Bat {4}  Cockroach {5}  Spider {6}  Scorpion {7}", ForgCard.CardsPlayed, RatCard.CardsPlayed, FlyCard.CardsPlayed, SinkBugCard.CardsPlayed, BatCard.CardsPlayed, CockroachCard.CardsPlayed, SpiderCard.CardsPlayed, ScorpionCard.CardsPlayed));
             Console.WriteLine(String.Format("Cards in your hand: Forg {0}  Rat {1}  Fly {2}  Sink Bug {3}  Bat {4}  Cockroach {5}  Spider {6}  Scorpion {7}", ForgCard.CardsRemaining, RatCard.CardsRemaining, FlyCard.CardsRemaining, SinkBugCard.CardsRemaining, BatCard.CardsRemaining, CockroachCard.CardsRemaining, SpiderCard.CardsRemaining, ScorpionCard.CardsRemaining));
-            Console.WriteLine(String.Format("Total cards in hand: {0}", CardsRemaining));
+            Console.WriteLine();
+        }
+
+        public void PrintCards()
+        {
+            Console.WriteLine(String.Format("{0}:", Name));
+            Console.WriteLine(String.Format("Cards In Front: Forg {0}  Rat {1}  Fly {2}  Sink Bug {3}  Bat {4}  Cockroach {5}  Spider {6}  Scorpion {7}", ForgCard.CardsPlayed, RatCard.CardsPlayed, FlyCard.CardsPlayed, SinkBugCard.CardsPlayed, BatCard.CardsPlayed, CockroachCard.CardsPlayed, SpiderCard.CardsPlayed, ScorpionCard.CardsPlayed));
+            Console.WriteLine();
         }
 
         
