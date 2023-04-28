@@ -15,9 +15,11 @@ namespace Cockroach_Poker
             int exitflag=0;
             int playerflag = 0;             //starts at 0 so mod+1 is first player
             string userInput;
-            string playagainst;
-            int cardagainst;
             string fib;
+            string choice;
+            int playagainst;
+            int cardagainst;
+            int liecard = 0;
             int NumberofPlayers;
             string Name;
             Player Player1;
@@ -177,19 +179,37 @@ namespace Cockroach_Poker
                 PlayerList[playerflag].PrintPlayer();
 
                 //Pick person to play against
+                if (NumberofPlayers == 2)
+                    Console.WriteLine("Player One (1) or Player Two (2)");
+                else
+                    Console.WriteLine("Player One (1), Player Two (2), Player Three (3), or Player Four (4)");
                 Console.WriteLine("Player you want to play against: ");
-                playagainst = Console.ReadLine();
+                playagainst = int.Parse(Console.ReadLine());
 
                 //Pick card to play
                 Console.WriteLine("1-Cockroach  2-Bat  3-SinkBug  4-Rat  5-Forg  6-Fly  7-Spider  8-Scorpion");
                 Console.WriteLine("Card you want to play (pick number): ");
                 cardagainst = int.Parse(Console.ReadLine());
+                liecard = cardagainst;
 
                 //Pick truth or lie (if lie choose different name)
                 Console.WriteLine("Truth (T) or Lie (F): ");
                 fib = Console.ReadLine();
 
+                if (fib=="F")
+                {
+                    Console.WriteLine("What bug: ");
+                    liecard=Console.Read();
+                }
+
+                Console.WriteLine();
+                Console.WriteLine();
+
                 //Player against chooses truth, lie, or pass (T,L,P)
+                Console.WriteLine(PlayerList[playagainst-1].Name + " what is your choice?");
+                Console.WriteLine("Truth (T), Lie (F), or Pass (P)");
+                choice=Console.ReadLine();
+                PlayerList[playagainst - 1].CardChoice(playagainst, fib, liecard, choice);
 
                 //Call receivecard method for specific player
 

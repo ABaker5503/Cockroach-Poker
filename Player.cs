@@ -98,6 +98,12 @@ namespace Cockroach_Poker
 
         }
 
+        //This is where you determine if the opponent was truthful or lying, or you pass the card
+        public void CardChoice(int opponent, string fib, int card, string choice)
+        { 
+
+        }
+
         public void PrintPlayer()
         {
             Console.WriteLine(String.Format("{0}:", Name));
