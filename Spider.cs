@@ -28,11 +28,11 @@ namespace Cockroach_Poker
             CardsRemaining++;
         }
 
-        public override bool WinOrLose(char x)
+        public override bool WinOrLose(string x, int card)
         {
-            if (x == 'T' && this.Number != 7)
+            if (x == "T" && card == 7)
                 return true;
-            else if (x == 'F' && this.Number == 7)
+            else if (x == "F" && card != 7)
                 return true;
             else
                 return false;

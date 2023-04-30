@@ -16,12 +16,14 @@ namespace Cockroach_Poker
             int playerflag = 0;             //starts at 0 so mod+1 is first player
             string userInput;
             string fib;
-            string choice;
+            string choice = null;
             int playagainst;
             int cardagainst;
             int liecard = 0;
             int NumberofPlayers;
             string Name;
+            bool keeporgive;
+            int cardsinhand;
             Player Player1;
             Player Player2;
             Player Player3;
@@ -138,84 +140,100 @@ namespace Cockroach_Poker
             }
             #endregion
 
+            Console.WriteLine();
             #region Game Loop
             while (exitflag!=1)
             {
                 //use player flag to indicate whose turn it is?
                 //Prints cards in Opponent(s') hand
-                int x = playerflag % NumberofPlayers + 1;
-                Console.WriteLine(x);
-                switch (x)
+                do
                 {
-                    case 1:
-                        PlayerList[1].PrintCards();
-                        if (NumberofPlayers == 4)
-                        {
-                            PlayerList[2].PrintCards();
+                    int x = playerflag % NumberofPlayers + 1;
+                    playerflag = playerflag & NumberofPlayers + 1;
+                    Console.WriteLine(playerflag);
+                    switch (x)
+                    {
+                        case 1:
+                            PlayerList[1].PrintCards();
+                            if (NumberofPlayers == 4)
+                            {
+                                PlayerList[2].PrintCards();
+                                PlayerList[3].PrintCards();
+                            }
+                            break;
+                        case 2:
+                            PlayerList[0].PrintCards();
+                            if (NumberofPlayers == 4)
+                            {
+                                PlayerList[2].PrintCards();
+                                PlayerList[3].PrintCards();
+                            }
+                            break;
+                        case 3:
+                            PlayerList[0].PrintCards();
+                            PlayerList[1].PrintCards();
                             PlayerList[3].PrintCards();
-                        }
-                        break;
-                    case 2:
-                        PlayerList[0].PrintCards();
-                        if (NumberofPlayers == 4)
-                        {
+                            break;
+                        case 4:
+                            PlayerList[0].PrintCards();
+                            PlayerList[1].PrintCards();
                             PlayerList[2].PrintCards();
-                            PlayerList[3].PrintCards();
-                        }
-                        break;
-                    case 3:
-                        PlayerList[0].PrintCards();
-                        PlayerList[1].PrintCards();
-                        PlayerList[3].PrintCards();
-                        break;
-                    case 4:
-                        PlayerList[0].PrintCards();
-                        PlayerList[1].PrintCards();
-                        PlayerList[3].PrintCards();
-                        break;
-                }
+                            break;
+                    }
 
-                //Print your cards
-                PlayerList[playerflag].PrintPlayer();
+                    //Print your cards
+                    PlayerList[playerflag].PrintPlayer();
 
-                //Pick person to play against
-                if (NumberofPlayers == 2)
-                    Console.WriteLine("Player One (1) or Player Two (2)");
-                else
-                    Console.WriteLine("Player One (1), Player Two (2), Player Three (3), or Player Four (4)");
-                Console.WriteLine("Player you want to play against: ");
-                playagainst = int.Parse(Console.ReadLine());
+                    //Pick person to play against
+                    playagainst = PlayerList[playerflag].ChooseOpponent(NumberofPlayers);
 
-                //Pick card to play
-                Console.WriteLine("1-Cockroach  2-Bat  3-SinkBug  4-Rat  5-Forg  6-Fly  7-Spider  8-Scorpion");
-                Console.WriteLine("Card you want to play (pick number): ");
-                cardagainst = int.Parse(Console.ReadLine());
-                liecard = cardagainst;
+                    //Pick card to play
+                    cardagainst = PlayerList[playerflag].ChooseCard();
+                    liecard = cardagainst;
 
-                //Pick truth or lie (if lie choose different name)
-                Console.WriteLine("Truth (T) or Lie (F): ");
-                fib = Console.ReadLine();
+                    //Pick truth or lie (if lie choose different name)
+                    fib = PlayerList[playerflag].TruthorLie();
 
-                if (fib=="F")
-                {
-                    Console.WriteLine("What bug: ");
-                    liecard=Console.Read();
-                }
+                    if (fib == "F")
+                        liecard = PlayerList[playerflag].ChooseCard();
 
-                Console.WriteLine();
-                Console.WriteLine();
+                    Console.WriteLine();
+                    Console.WriteLine();
 
-                //Player against chooses truth, lie, or pass (T,L,P)
-                Console.WriteLine(PlayerList[playagainst-1].Name + " what is your choice?");
-                Console.WriteLine("Truth (T), Lie (F), or Pass (P)");
-                choice=Console.ReadLine();
-                PlayerList[playagainst - 1].CardChoice(playagainst, fib, liecard, choice);
+                    //Opponent chooses truth, lie, or pass (T,L,P)
+                    Console.WriteLine(PlayerList[playagainst - 1].Name + " what is your choice?");
+                    Console.WriteLine("Truth (T), Lie (F), or Pass (P)");
+                    choice = Console.ReadLine();
+
+
+                    //Passing isn't working right now.  Fix later
+                    if (choice == "P")
+                        playerflag = playagainst;
+                    //this math might need a +1
+
+                } while (choice == "P");
+                //This might work
+                //the loop runs once to get first card
+                //rerun the loop if the player chooses to pass
+                //maybe...
+
+                //playagainst(int) who you are playing card against
+                //cardagainst(int) what the card actually is
+                //lie card(int) what you say the card is
+                //fib(string) truth or lie
+                //choice(string) do you believe or not or pass
+
+                keeporgive = PlayerList[playagainst - 1].CardChoice(choice, cardagainst, liecard);
 
                 //Call receivecard method for specific player
+                if (keeporgive) //is true
+                    cardsinhand = PlayerList[playerflag].ReceiveCard(cardagainst);
+                else
+                    cardsinhand = PlayerList[playagainst].ReceiveCard(cardagainst);
 
                 //chech if player against has 4 of any cards, set exitflag=1;
-
-                //if player enters "x", set exitflag=1
+                if (cardsinhand == 4)
+                    exitflag = 1;
 
                 exitflag = 1;
             }

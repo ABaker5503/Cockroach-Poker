@@ -16,9 +16,9 @@ namespace Cockroach_Poker
 
 
 
-        public virtual bool WinOrLose(char x)
+        public virtual bool WinOrLose(string x, int card)
         {
-            if (x == 'T')
+            if (x == "T")
                 return true;
             else
                 return false;
