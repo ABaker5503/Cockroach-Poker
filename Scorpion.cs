@@ -10,8 +10,6 @@ namespace Cockroach_Poker
     {
         private string Catchphrase;
         private string Color;
-        public int CardsRemaining;
-        public int CardsPlayed;
 
         public Scorpion()
         {
@@ -19,13 +17,13 @@ namespace Cockroach_Poker
             Number = 8;
             Catchphrase = "You think that stung?";
             Color = "Gray";
-            CardsRemaining = 0;
-            CardsPlayed = 0;
+            CardsToPlay = 0;
+            CardsReceived = 0;
         }
 
         public void CardsinHand()
         {
-            CardsRemaining++;
+            CardsToPlay++;
         }
 
         public override bool WinOrLose(string x, int card)

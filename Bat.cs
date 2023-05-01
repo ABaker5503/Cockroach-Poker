@@ -10,8 +10,6 @@ namespace Cockroach_Poker
     {
         private string Catchphrase;
         private string Color;
-        public int CardsRemaining;
-        public int CardsPlayed;
 
         public Bat()
         {
@@ -19,13 +17,13 @@ namespace Cockroach_Poker
             Number = 2;
             Catchphrase = "Alfred, where's the BatMobile?";
             Color = "Purple";
-            CardsRemaining = 0;
-            CardsPlayed = 0;
+            CardsToPlay = 0;
+            CardsReceived = 0;
         }
 
         public void CardsinHand()
         {
-            CardsRemaining++;
+            CardsToPlay++;
         }
         public override bool WinOrLose(string x, int card)
         {

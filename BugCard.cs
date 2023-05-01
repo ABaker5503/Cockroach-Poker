@@ -11,6 +11,8 @@ namespace Cockroach_Poker
     {
         public string Name;
         public int Number;
+        public int CardsReceived;
+        public int CardsToPlay;
 
         public BugCard() { }
 
@@ -22,6 +24,16 @@ namespace Cockroach_Poker
                 return true;
             else
                 return false;
+        }
+
+        public void ReceiveACard()
+        {
+            CardsReceived++;
+        }
+
+        public void PlayACard()
+        {
+            CardsToPlay--;
         }
     }
 }

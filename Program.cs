@@ -149,7 +149,7 @@ namespace Cockroach_Poker
                 do
                 {
                     int x = playerflag % NumberofPlayers + 1;
-                    playerflag = playerflag & NumberofPlayers + 1;
+                    //playerflag = playerflag % NumberofPlayers + 1;
                     Console.WriteLine(playerflag);
                     switch (x)
                     {
@@ -201,6 +201,8 @@ namespace Cockroach_Poker
                     Console.WriteLine();
 
                     //Opponent chooses truth, lie, or pass (T,L,P)
+                    //want to print out card name.  Do that later
+                    Console.WriteLine(String.Format("{0} is offering you a {1}", PlayerList[playerflag].Name, liecard));
                     Console.WriteLine(PlayerList[playagainst - 1].Name + " what is your choice?");
                     Console.WriteLine("Truth (T), Lie (F), or Pass (P)");
                     choice = Console.ReadLine();
@@ -229,14 +231,18 @@ namespace Cockroach_Poker
                 if (keeporgive) //is true
                     cardsinhand = PlayerList[playerflag].ReceiveCard(cardagainst);
                 else
-                    cardsinhand = PlayerList[playagainst].ReceiveCard(cardagainst);
+                    cardsinhand = PlayerList[playagainst-1].ReceiveCard(cardagainst);
 
-                //chech if player against has 4 of any cards, set exitflag=1;
-                if (cardsinhand == 4)
+                //chech if any player has 4 of any cards, set exitflag=1;
+                if (cardsinhand == 2)
                     exitflag = 1;
 
-                exitflag = 1;
+                playerflag++;
+                if (playerflag >= NumberofPlayers)
+                    playerflag = 0;
+                //exitflag = 1;
             }
+            Console.WriteLine(PlayerList[playerflag - 1] + " loses!  Good Try!");
             Console.ReadLine();
             #endregion
         }
