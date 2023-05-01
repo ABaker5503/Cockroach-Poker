@@ -80,35 +80,35 @@ namespace Cockroach_Poker
             {
                 case 1:
                     CockroachCard.ReceiveACard();
-                    result = CockroachCard.CardsToPlay;
+                    result = CockroachCard.CardsReceived;
                     break;
                 case 2:
                     BatCard.ReceiveACard();
-                    result = BatCard.CardsToPlay;
+                    result = BatCard.CardsReceived;
                     break;
                 case 3:
                     SinkBugCard.ReceiveACard();
-                    result = SinkBugCard.CardsToPlay;
+                    result = SinkBugCard.CardsReceived;
                     break;
                 case 4:
                     RatCard.ReceiveACard();
-                    result = RatCard.CardsToPlay;
+                    result = RatCard.CardsReceived;
                     break;
                 case 5:
                     ForgCard.ReceiveACard();
-                    result = ForgCard.CardsToPlay;
+                    result = ForgCard.CardsReceived;
                     break;
                 case 6:
                     FlyCard.ReceiveACard();
-                    result = FlyCard.CardsToPlay;
+                    result = FlyCard.CardsReceived;
                     break;
                 case 7:
                     SpiderCard.ReceiveACard();
-                    result = SpiderCard.CardsToPlay;
+                    result = SpiderCard.CardsReceived;
                     break;
                 case 8:
                     ScorpionCard.ReceiveACard();
-                    result = ScorpionCard.CardsToPlay;
+                    result = ScorpionCard.CardsReceived;
                     break;
             }
             CardsReceived++;
@@ -123,6 +123,7 @@ namespace Cockroach_Poker
                 Console.WriteLine("Player One (1), Player Two (2), Player Three (3), or Player Four (4)");
             Console.WriteLine("Player you want to play against: ");
             int result = int.Parse(Console.ReadLine());
+            Console.WriteLine();
             return result;
         }
 
@@ -131,6 +132,35 @@ namespace Cockroach_Poker
             Console.WriteLine("1-Cockroach  2-Bat  3-SinkBug  4-Rat  5-Forg  6-Fly  7-Spider  8-Scorpion");
             Console.WriteLine("Card you want to play (pick number): ");
             int result = int.Parse(Console.ReadLine());
+            Console.WriteLine();
+
+            switch(result)
+            {
+                case 1:
+                    CockroachCard.PlayACard();
+                    break;
+                case 2:
+                    BatCard.PlayACard();
+                    break;
+                case 3:
+                    SinkBugCard.PlayACard();
+                    break;
+                case 4:
+                    RatCard.PlayACard();
+                    break;
+                case 5:
+                    ForgCard.PlayACard();
+                    break;
+                case 6:
+                    FlyCard.PlayACard();
+                    break;
+                case 7:
+                    SpiderCard.PlayACard();
+                    break;
+                case 8:
+                    ScorpionCard.PlayACard();
+                    break;
+            }
             return result;
         }
 
@@ -138,13 +168,14 @@ namespace Cockroach_Poker
         {
             Console.WriteLine("Truth (T) or Lie (F): ");
             var result = Console.ReadLine();
+            Console.WriteLine();
             return result;
         }
 
         public bool CardChoice(string choice, int actualcard, int liecard)
         {
             bool truth = true;
-            switch (liecard)
+            switch (actualcard)
             {
                 case 1:
                     truth = CockroachCard.WinOrLose(choice, liecard);
@@ -171,7 +202,7 @@ namespace Cockroach_Poker
                     truth = ScorpionCard.WinOrLose(choice, liecard);
                     break;
                 }
-
+            Console.WriteLine("--------------" + truth + "---------------");
             return truth;
         }
 

@@ -207,31 +207,29 @@ namespace Cockroach_Poker
                     Console.WriteLine("Truth (T), Lie (F), or Pass (P)");
                     choice = Console.ReadLine();
 
-
-                    //Passing isn't working right now.  Fix later
                     if (choice == "P")
-                        playerflag = playagainst;
-                    //this math might need a +1
+                    {
+                        playerflag = playagainst-1;
+                        playerflag++;
+                        if (playerflag >= NumberofPlayers)
+                            playerflag = 0;
+                    }
 
                 } while (choice == "P");
-                //This might work
-                //the loop runs once to get first card
-                //rerun the loop if the player chooses to pass
-                //maybe...
-
-                //playagainst(int) who you are playing card against
-                //cardagainst(int) what the card actually is
-                //lie card(int) what you say the card is
-                //fib(string) truth or lie
-                //choice(string) do you believe or not or pass
 
                 keeporgive = PlayerList[playagainst - 1].CardChoice(choice, cardagainst, liecard);
 
                 //Call receivecard method for specific player
                 if (keeporgive) //is true
+                {
                     cardsinhand = PlayerList[playerflag].ReceiveCard(cardagainst);
+                    Console.WriteLine("THERE");
+                }
                 else
-                    cardsinhand = PlayerList[playagainst-1].ReceiveCard(cardagainst);
+                {
+                    cardsinhand = PlayerList[playagainst - 1].ReceiveCard(cardagainst);
+                    Console.WriteLine("HERE");
+                }
 
                 //chech if any player has 4 of any cards, set exitflag=1;
                 if (cardsinhand == 2)
@@ -240,9 +238,11 @@ namespace Cockroach_Poker
                 playerflag++;
                 if (playerflag >= NumberofPlayers)
                     playerflag = 0;
-                //exitflag = 1;
             }
-            Console.WriteLine(PlayerList[playerflag - 1] + " loses!  Good Try!");
+            foreach (Player p in PlayerList)
+                p.PrintPlayer();
+
+            Console.WriteLine(PlayerList[playerflag] + " loses!  Good Try!");
             Console.ReadLine();
             #endregion
         }
