@@ -8,14 +8,12 @@ namespace Cockroach_Poker
 {
     public class Cockroach : BugCard
     {
-        private string Catchphrase;
-        private string Color;
+        private string Catchphrase { get; }
         public Cockroach()
         {
             Name = "Cockroach";
             Number = 1;
             Catchphrase = "Indestructible";
-            Color = "Red";
             CardsToPlay = 0;
             CardsReceived = 0;
         }
@@ -33,6 +31,11 @@ namespace Cockroach_Poker
                 return true;
             else
                 return false;
+        }
+
+        public override void Speak()
+        {
+            Console.WriteLine(Catchphrase);
         }
     }
 }

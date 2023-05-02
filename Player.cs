@@ -80,18 +80,22 @@ namespace Cockroach_Poker
             {
                 case 1:
                     CockroachCard.ReceiveACard();
+                    CockroachCard.Speak();
                     result = CockroachCard.CardsReceived;
                     break;
                 case 2:
                     BatCard.ReceiveACard();
+                    BatCard.Speak();
                     result = BatCard.CardsReceived;
                     break;
                 case 3:
                     SinkBugCard.ReceiveACard();
+                    SinkBugCard.Speak();
                     result = SinkBugCard.CardsReceived;
                     break;
                 case 4:
                     RatCard.ReceiveACard();
+                    RatCard.Speak();
                     result = RatCard.CardsReceived;
                     break;
                 case 5:
@@ -100,14 +104,17 @@ namespace Cockroach_Poker
                     break;
                 case 6:
                     FlyCard.ReceiveACard();
+                    FlyCard.Speak();
                     result = FlyCard.CardsReceived;
                     break;
                 case 7:
                     SpiderCard.ReceiveACard();
+                    SpiderCard.Speak();
                     result = SpiderCard.CardsReceived;
                     break;
                 case 8:
                     ScorpionCard.ReceiveACard();
+                    ScorpionCard.Speak();
                     result = ScorpionCard.CardsReceived;
                     break;
             }
@@ -172,6 +179,16 @@ namespace Cockroach_Poker
             return result;
         }
 
+        public string TruthLiePass(int x, string opponent)
+        {
+            string cardname = CockroachCard.DetermineCard(x);
+            Console.WriteLine(String.Format("{0} is offering you a {1}", opponent, cardname));
+            Console.WriteLine(this.Name + " what is your choice?");
+            Console.WriteLine("Truth (T), Lie (F), or Pass (P)");
+            string choice = Console.ReadLine();
+            return choice;
+        }
+
         public bool CardChoice(string choice, int actualcard, int liecard)
         {
             bool truth = true;
@@ -209,15 +226,15 @@ namespace Cockroach_Poker
         public void PrintPlayer()
         {
             Console.WriteLine(String.Format("{0}:", Name));
-            Console.WriteLine(String.Format("Cards In Front: Forg {0}  Rat {1}  Fly {2}  Sink Bug {3}  Bat {4}  Cockroach {5}  Spider {6}  Scorpion {7}", ForgCard.CardsReceived, RatCard.CardsReceived, FlyCard.CardsReceived, SinkBugCard.CardsReceived, BatCard.CardsReceived, CockroachCard.CardsReceived, SpiderCard.CardsReceived, ScorpionCard.CardsReceived));
-            Console.WriteLine(String.Format("Cards in Your Hand: Forg {0}  Rat {1}  Fly {2}  Sink Bug {3}  Bat {4}  Cockroach {5}  Spider {6}  Scorpion {7}", ForgCard.CardsToPlay, RatCard.CardsToPlay, FlyCard.CardsToPlay, SinkBugCard.CardsToPlay, BatCard.CardsToPlay, CockroachCard.CardsToPlay, SpiderCard.CardsToPlay, ScorpionCard.CardsToPlay));
+            Console.WriteLine(String.Format("Cards In Front: Cockroach {0}  Bat {1}  Sink Bug {2}  Rat {3}  Forg {4}  Fly {5}  Spider {6}  Scorpion {7}", CockroachCard.CardsReceived, BatCard.CardsReceived, SinkBugCard.CardsReceived, RatCard.CardsReceived, ForgCard.CardsReceived, FlyCard.CardsReceived, SpiderCard.CardsReceived, ScorpionCard.CardsReceived));
+            Console.WriteLine(String.Format("Cards in Your Hand: Cockroach {0}  Bat {1}  Sink Bug {2}  Rat {3}  Forg {4}  Fly {5}  Spider {6}  Scorpion {7}", CockroachCard.CardsToPlay, BatCard.CardsToPlay, SinkBugCard.CardsToPlay, RatCard.CardsToPlay, ForgCard.CardsToPlay, FlyCard.CardsToPlay, SpiderCard.CardsToPlay, ScorpionCard.CardsToPlay));
             Console.WriteLine();
         }
 
         public void PrintCards()
         {
             Console.WriteLine(String.Format("{0}:", Name));
-            Console.WriteLine(String.Format("Cards In Front: Forg {0}  Rat {1}  Fly {2}  Sink Bug {3}  Bat {4}  Cockroach {5}  Spider {6}  Scorpion {7}", ForgCard.CardsReceived, RatCard.CardsReceived, FlyCard.CardsReceived, SinkBugCard.CardsReceived, BatCard.CardsReceived, CockroachCard.CardsReceived, SpiderCard.CardsReceived, ScorpionCard.CardsReceived));
+            Console.WriteLine(String.Format("Cards In Front: Cockroach {0}  Bat {1}  Sink Bug {2}  Rat {3}  Forg {4}  Fly {5}  Spider {6}  Scorpion {7}", CockroachCard.CardsReceived, BatCard.CardsReceived, SinkBugCard.CardsReceived, RatCard.CardsReceived, ForgCard.CardsReceived, FlyCard.CardsReceived, SpiderCard.CardsReceived, ScorpionCard.CardsReceived));
             Console.WriteLine();
         }
 

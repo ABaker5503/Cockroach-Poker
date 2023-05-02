@@ -8,15 +8,13 @@ namespace Cockroach_Poker
 {
     internal class Scorpion : BugCard
     {
-        private string Catchphrase;
-        private string Color;
+        private string Catchphrase { get; }
 
         public Scorpion()
         {
             Name = "Scorpion";
             Number = 8;
             Catchphrase = "You think that stung?";
-            Color = "Gray";
             CardsToPlay = 0;
             CardsReceived = 0;
         }
@@ -34,6 +32,11 @@ namespace Cockroach_Poker
                 return true;
             else
                 return false;
+        }
+
+        public override void Speak()
+        {
+            Console.WriteLine(Catchphrase);
         }
     }
 }

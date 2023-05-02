@@ -8,15 +8,13 @@ namespace Cockroach_Poker
 {
     internal class Forg : BugCard
     {
-        private string Catchphrase;
-        private string Color;
+        private string Catchphrase { get; }
 
         public Forg()
         {
             Name = "Forg";
             Number = 5;
             Catchphrase = "Not just one of the ten plagues anymore";
-            Color = "Seductive Green";
             CardsToPlay = 0;
             CardsReceived = 0;
         }
@@ -34,6 +32,11 @@ namespace Cockroach_Poker
                 return true;
             else
                 return false;
+        }
+
+        public override void Speak()
+        {
+            Console.WriteLine(Catchphrase);
         }
     }
 }

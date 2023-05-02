@@ -8,15 +8,13 @@ namespace Cockroach_Poker
 {
     internal class Rat : BugCard
     {
-        private string Catchphrase;
-        private string Color;
+        private string Catchphrase { get; }
 
         public Rat()
         {
             Name = "Rat";
             Number = 4;
             Catchphrase = "I'm not a hairless cat";
-            Color = "Brown";
             CardsToPlay = 0;
             CardsReceived = 0;
         }
@@ -34,6 +32,11 @@ namespace Cockroach_Poker
                 return true;
             else
                 return false;
+        }
+
+        public override void Speak()
+        {
+            Console.WriteLine(Catchphrase);
         }
     }
 }

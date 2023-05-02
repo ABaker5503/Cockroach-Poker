@@ -26,6 +26,11 @@ namespace Cockroach_Poker
                 return false;
         }
 
+        public virtual void Speak()
+        {
+            Console.WriteLine("Hello");
+        }
+
         public void ReceiveACard()
         {
             CardsReceived++;
@@ -34,6 +39,30 @@ namespace Cockroach_Poker
         public void PlayACard()
         {
             CardsToPlay--;
+        }
+
+        public string DetermineCard(int x)
+        {
+            switch (x)
+            {
+                case 1:
+                    return "Cockroach";
+                case 2:
+                    return "Bat";
+                case 3:
+                    return "Sink Bug";
+                case 4:
+                    return "Rat";
+                case 5:
+                    return "Forg";
+                case 6:
+                    return "Fly";
+                case 7:
+                    return "Spider";
+                case 8:
+                    return "Scorpion";
+            }
+            return "Invalid";
         }
     }
 }

@@ -8,15 +8,13 @@ namespace Cockroach_Poker
 {
     internal class Spider : BugCard
     {
-        private string Catchphrase;
-        private string Color;
+        private string Catchphrase { get; } 
 
         public Spider()
         {
             Name = "Spider";
             Number = 7;
             Catchphrase = "The things of nightmares";
-            Color = "Black";
             CardsToPlay = 0;
             CardsReceived = 0;
         }
@@ -34,6 +32,11 @@ namespace Cockroach_Poker
                 return true;
             else
                 return false;
+        }
+
+        public override void Speak()
+        {
+            Console.WriteLine(Catchphrase);
         }
     }
 }

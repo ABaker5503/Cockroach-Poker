@@ -8,15 +8,13 @@ namespace Cockroach_Poker
 {
     internal class Bat : BugCard
     {
-        private string Catchphrase;
-        private string Color;
+        private string Catchphrase { get; }
 
         public Bat()
         {
             Name = "Bat";
             Number = 2;
             Catchphrase = "Alfred, where's the BatMobile?";
-            Color = "Purple";
             CardsToPlay = 0;
             CardsReceived = 0;
         }
@@ -33,6 +31,11 @@ namespace Cockroach_Poker
                 return true;
             else
                 return false;
+        }
+
+        public override void Speak()
+        {
+            Console.WriteLine(Catchphrase);
         }
     }
 }

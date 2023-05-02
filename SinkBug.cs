@@ -8,15 +8,13 @@ namespace Cockroach_Poker
 {
     internal class SinkBug : BugCard
     {
-        private string Catchphrase;
-        private string Color;
+        private string Catchphrase { get; }
 
         public SinkBug()
         {
             Name = "Sink Bug";
             Number = 3;
             Catchphrase = "You've been sink bugged";
-            Color = "Green";
             CardsToPlay = 0;
             CardsReceived = 0;
         }
@@ -34,6 +32,11 @@ namespace Cockroach_Poker
                 return true;
             else
                 return false;
+        }
+
+        public override void Speak()
+        {
+            Console.WriteLine(Catchphrase);
         }
     }
 }

@@ -8,15 +8,13 @@ namespace Cockroach_Poker
 {
     internal class Fly : BugCard
     {
-        private string Catchphrase;
-        private string Color;
+        private string Catchphrase { get; }
 
         public Fly()
         {
             Name = "Fly";
             Number = 6;
             Catchphrase = "You swat at me, I'll dive bomb you";
-            Color = "Blue";
             CardsToPlay = 0;
             CardsReceived = 0;
         }
@@ -34,6 +32,11 @@ namespace Cockroach_Poker
                 return true;
             else
                 return false;
+        }
+
+        public override void Speak()
+        {
+            Console.WriteLine(Catchphrase);
         }
     }
 }

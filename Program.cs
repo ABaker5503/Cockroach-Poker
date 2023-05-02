@@ -12,7 +12,8 @@ namespace Cockroach_Poker
     {
         static void Main(string[] args)
         {
-            int exitflag=0;
+            #region Variables
+            int exitflag =0;
             int playerflag = 0;             //starts at 0 so mod+1 is first player
             string userInput;
             string fib;
@@ -29,9 +30,24 @@ namespace Cockroach_Poker
             Player Player3;
             Player Player4;
             List<Player> PlayerList=new List<Player>();
+            #endregion
 
             #region Print Rules
-            //still need to do this
+            Console.WriteLine("Welcome to Cockroach Poker!  Your goal is to lie your way to victory");
+            Console.WriteLine();
+            Console.WriteLine("How to Play:");
+            Console.WriteLine("On your turn, you select a card from your hand to play against another player of your choice.");
+            Console.WriteLine("You can either say the card is what is it, or lie about what type of bug it is.");
+            Console.WriteLine("Your opponent then chooses if they believe you (truth) or not (lie).");
+            Console.WriteLine("If your opponent guesses truth or lie correctly, you receive the card and place it in front of youself.");
+            Console.WriteLine("If they guess incorrectly, they receive the card and place it in front of themselves.");
+            Console.WriteLine("Additionally, your opponent can choose to pass the card to another player.");
+            Console.WriteLine("In this case, they look at the card, choose whether to tell the truth or lie, and pick their target.");
+            Console.WriteLine("Passing can continue as long as there are players who have not received the card yet.");
+            Console.WriteLine("The game continues until one player has four of the same card in front of them.");
+            Console.WriteLine();
+            Console.WriteLine("Press any key to continue:");
+            Console.ReadLine();
             #endregion
 
             Console.WriteLine("How many players? (2 or 4)");
@@ -140,17 +156,13 @@ namespace Cockroach_Poker
             }
             #endregion
 
-            Console.WriteLine();
+            Console.Clear();
             #region Game Loop
             while (exitflag!=1)
             {
-                //use player flag to indicate whose turn it is?
-                //Prints cards in Opponent(s') hand
                 do
                 {
                     int x = playerflag % NumberofPlayers + 1;
-                    //playerflag = playerflag % NumberofPlayers + 1;
-                    Console.WriteLine(playerflag);
                     switch (x)
                     {
                         case 1:
@@ -197,15 +209,21 @@ namespace Cockroach_Poker
                     if (fib == "F")
                         liecard = PlayerList[playerflag].ChooseCard();
 
-                    Console.WriteLine();
-                    Console.WriteLine();
+                    Console.Clear();
+
+                    foreach (Player p in PlayerList)
+                    {
+                        if (p != PlayerList[playagainst-1])
+                            p.PrintCards();
+                    }
+
+                    PlayerList[playagainst-1].PrintPlayer();
+
+
 
                     //Opponent chooses truth, lie, or pass (T,L,P)
                     //want to print out card name.  Do that later
-                    Console.WriteLine(String.Format("{0} is offering you a {1}", PlayerList[playerflag].Name, liecard));
-                    Console.WriteLine(PlayerList[playagainst - 1].Name + " what is your choice?");
-                    Console.WriteLine("Truth (T), Lie (F), or Pass (P)");
-                    choice = Console.ReadLine();
+                    choice = PlayerList[playagainst-1].TruthLiePass(liecard, PlayerList[playerflag].Name);
 
                     if (choice == "P")
                     {
@@ -221,18 +239,12 @@ namespace Cockroach_Poker
 
                 //Call receivecard method for specific player
                 if (keeporgive) //is true
-                {
                     cardsinhand = PlayerList[playerflag].ReceiveCard(cardagainst);
-                    Console.WriteLine("THERE");
-                }
                 else
-                {
                     cardsinhand = PlayerList[playagainst - 1].ReceiveCard(cardagainst);
-                    Console.WriteLine("HERE");
-                }
 
                 //chech if any player has 4 of any cards, set exitflag=1;
-                if (cardsinhand == 2)
+                if (cardsinhand == 4)
                     exitflag = 1;
 
                 playerflag++;
