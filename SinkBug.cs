@@ -14,7 +14,7 @@ namespace Cockroach_Poker
         {
             Name = "Sink Bug";
             Number = 3;
-            Catchphrase = "You've been sink bugged";
+            Catchphrase = " You've been sink bugged!";
             CardsToPlay = 0;
             CardsReceived = 0;
         }
@@ -36,7 +36,7 @@ namespace Cockroach_Poker
 
         public override void Speak()
         {
-            Console.WriteLine(Catchphrase);
+            Console.WriteLine("     That's too bad!" + Catchphrase);
         }
     }
 }

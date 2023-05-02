@@ -14,7 +14,7 @@ namespace Cockroach_Poker
         {
             Name = "Rat";
             Number = 4;
-            Catchphrase = "I'm not a hairless cat";
+            Catchphrase = " I'm not a hairless cat!";
             CardsToPlay = 0;
             CardsReceived = 0;
         }
@@ -35,8 +35,8 @@ namespace Cockroach_Poker
         }
 
         public override void Speak()
-        {
-            Console.WriteLine(Catchphrase);
+        {  
+            Console.WriteLine("     That's too bad!" + Catchphrase);
         }
     }
 }

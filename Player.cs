@@ -181,7 +181,7 @@ namespace Cockroach_Poker
 
         public string TruthLiePass(int x, string opponent)
         {
-            string cardname = CockroachCard.DetermineCard(x);
+            string cardname = WhichCard(x);
             Console.WriteLine(String.Format("{0} is offering you a {1}", opponent, cardname));
             Console.WriteLine(this.Name + " what is your choice?");
             Console.WriteLine("Truth (T), Lie (F), or Pass (P)");
@@ -219,8 +219,13 @@ namespace Cockroach_Poker
                     truth = ScorpionCard.WinOrLose(choice, liecard);
                     break;
                 }
-            Console.WriteLine("--------------" + truth + "---------------");
             return truth;
+        }
+
+        public string WhichCard(int x)
+        {
+            string bug = CockroachCard.DetermineCard(x);
+            return bug;
         }
 
         public void PrintPlayer()

@@ -13,7 +13,7 @@ namespace Cockroach_Poker
         {
             Name = "Cockroach";
             Number = 1;
-            Catchphrase = "Indestructible";
+            Catchphrase = " I am Indestructible!";
             CardsToPlay = 0;
             CardsReceived = 0;
         }
@@ -35,7 +35,7 @@ namespace Cockroach_Poker
 
         public override void Speak()
         {
-            Console.WriteLine(Catchphrase);
+            Console.WriteLine("     That's too bad!" + Catchphrase);
         }
     }
 }

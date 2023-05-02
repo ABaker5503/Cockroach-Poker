@@ -14,7 +14,7 @@ namespace Cockroach_Poker
         {
             Name = "Fly";
             Number = 6;
-            Catchphrase = "You swat at me, I'll dive bomb you";
+            Catchphrase = " You swat at me, I'll dive bomb you!";
             CardsToPlay = 0;
             CardsReceived = 0;
         }
@@ -36,7 +36,7 @@ namespace Cockroach_Poker
 
         public override void Speak()
         {
-            Console.WriteLine(Catchphrase);
+            Console.WriteLine("     That's too bad!" + Catchphrase);
         }
     }
 }

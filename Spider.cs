@@ -14,7 +14,7 @@ namespace Cockroach_Poker
         {
             Name = "Spider";
             Number = 7;
-            Catchphrase = "The things of nightmares";
+            Catchphrase = " The things of nightmares!";
             CardsToPlay = 0;
             CardsReceived = 0;
         }
@@ -36,7 +36,7 @@ namespace Cockroach_Poker
 
         public override void Speak()
         {
-            Console.WriteLine(Catchphrase);
+            Console.WriteLine("     That's too bad!" + Catchphrase);
         }
     }
 }

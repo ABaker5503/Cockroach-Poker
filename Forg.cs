@@ -14,7 +14,7 @@ namespace Cockroach_Poker
         {
             Name = "Forg";
             Number = 5;
-            Catchphrase = "Not just one of the ten plagues anymore";
+            Catchphrase = " Not just one of the ten plagues anymore!";
             CardsToPlay = 0;
             CardsReceived = 0;
         }
@@ -36,7 +36,7 @@ namespace Cockroach_Poker
 
         public override void Speak()
         {
-            Console.WriteLine(Catchphrase);
+            Console.WriteLine("     That's too bad!" + Catchphrase);
         }
     }
 }

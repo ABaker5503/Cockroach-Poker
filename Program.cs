@@ -19,7 +19,7 @@ namespace Cockroach_Poker
             string fib;
             string choice = null;
             int playagainst;
-            int cardagainst;
+            int cardagainst = 0;
             int liecard = 0;
             int NumberofPlayers;
             string Name;
@@ -199,9 +199,17 @@ namespace Cockroach_Poker
                     //Pick person to play against
                     playagainst = PlayerList[playerflag].ChooseOpponent(NumberofPlayers);
 
-                    //Pick card to play
-                    cardagainst = PlayerList[playerflag].ChooseCard();
-                    liecard = cardagainst;
+                    if (choice != "P")
+                    {
+                        //Pick card to play
+                        cardagainst = PlayerList[playerflag].ChooseCard();
+                        liecard = cardagainst;
+                    }
+                    else
+                    {
+                        //Find out what the card is and truth or lie
+                        Console.WriteLine("The card is a " + PlayerList[playerflag].WhichCard(cardagainst));
+                    }
 
                     //Pick truth or lie (if lie choose different name)
                     fib = PlayerList[playerflag].TruthorLie();
@@ -247,14 +255,17 @@ namespace Cockroach_Poker
                 if (cardsinhand == 4)
                     exitflag = 1;
 
+                //Go to next player
                 playerflag++;
                 if (playerflag >= NumberofPlayers)
                     playerflag = 0;
             }
-            foreach (Player p in PlayerList)
-                p.PrintPlayer();
 
-            Console.WriteLine(PlayerList[playerflag] + " loses!  Good Try!");
+            //Prints out all player cards to that you can see why you lost
+            foreach (Player p in PlayerList)
+                p.PrintCards();
+
+            Console.WriteLine(PlayerList[playerflag].Name + " loses!  Good Try!");
             Console.ReadLine();
             #endregion
         }

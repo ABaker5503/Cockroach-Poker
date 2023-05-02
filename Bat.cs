@@ -14,7 +14,7 @@ namespace Cockroach_Poker
         {
             Name = "Bat";
             Number = 2;
-            Catchphrase = "Alfred, where's the BatMobile?";
+            Catchphrase = " Alfred, where's the BatMobile?";
             CardsToPlay = 0;
             CardsReceived = 0;
         }
@@ -35,7 +35,7 @@ namespace Cockroach_Poker
 
         public override void Speak()
         {
-            Console.WriteLine(Catchphrase);
+            Console.WriteLine("     That's too bad!" + Catchphrase);
         }
     }
 }
