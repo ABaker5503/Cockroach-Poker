@@ -47,11 +47,8 @@
     <Compile Include="BugCard.cs" />
     <Compile Include="Spider.cs" />
     <Compile Include="Cockroach.cs" />
-    <Compile Include="ComputerPlayer.cs" />
-    <Compile Include="CurrentGame.cs" />
     <Compile Include="Fly.cs" />
     <Compile Include="Forg.cs" />
-    <Compile Include="Human.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
